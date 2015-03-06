@@ -9,4 +9,8 @@ class UsersController < ApplicationController
     @points = @user.points
     @rewards = @user.rewards
   end
+
+  def create
+  end
+  
 end
