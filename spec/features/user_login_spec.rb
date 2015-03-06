@@ -16,4 +16,11 @@ RSpec.describe "When registered user", type: :feature do
     login_user
     expect(page).to have_content("Logout")
   end
+
+  it "Logs out and redirects to sign in" do
+    login_user
+    click_link_or_button("Logout")
+    expect(page).to have_button('Sign in')
+  end
+  
 end
