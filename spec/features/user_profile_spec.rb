@@ -51,15 +51,6 @@ RSpec.describe "When registered user", type: :feature do
       visit user_path(admin)
       expect(page).to have_link('All users')
     end
-
-    it "can give point(s) to a default user " do
-      admin = User.create(username:'admin', password:'admin', role:1)
-      sally = User.create(username:'sally', password:'mae', role:0)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-      visit user_path(admin)
-      click_link_or_button("All users")
-      expect(page).to have_content("+1 point")
-    end
   end
 end
 

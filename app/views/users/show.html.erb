@@ -1,11 +1,11 @@
 <header><h1><%= @user.username %>'s Dashboard</h1></header>
 <%= link_to "Logout", logout_path, method: :delete %>
 
-<% if @user.role == "default" %>
   <div id='points'>
     <% @points.each do |point| %>
       <p>1</p>
     <% end %>
+    <h3>Total points: <%= @points.count %></h3>
   </div>
 
   <div id="rewards">
@@ -13,6 +13,10 @@
       <p><%= reward.name %></p>
     <% end %>
   </div>
-<% else %>
-  <%= link_to "All users", users_path %>
+
+<% if current_user.role == "admin" %>
+    <% if current_user != @user %>
+      <%= link_to "+1 point for #{@user.username}", user_points_path(@user), method: :post %>
+    <% end %>
+    <%= link_to "All users", users_path %>
 <% end %>
