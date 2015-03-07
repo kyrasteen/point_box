@@ -22,14 +22,34 @@ RSpec.describe "When registered user", type: :feature do
       expect(page).to have_content(1)
     end
 
-
-    it "registered user cannot view another users' profile" do
+    it "cannot view another users' profile" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(sally)
       protected_user = User.create(username: "protected",  password: "password", role:0)
       visit user_path(protected_user)
       within("#errors") do
         expect(page).to have_content("Not authorized")
       end
+    end
+  end
+
+  context "As a defualt role" do
+    it "cannot add points to my account" do
+      login_user
+      expect(page).not_to have_content('add point(s)')
+    end
+
+    it "cannot create possible rewards" do
+      login_user
+      expect(page).not_to have_content('add reward(s)')
+    end
+  end
+
+  context "As a admin role" do
+    it "sees all defualt users from a link on dashboard" do
+      admin = User.create(username:'admin', password:'admin', role:1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      visit user_path(admin)
+      expect(page).to have_link('All users')
     end
   end
 end
