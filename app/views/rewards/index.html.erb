@@ -2,6 +2,7 @@
   <li><%= reward.name %></li>
     <ul>
       <li><%= link_to "edit", edit_reward_path(reward.id) %></li>
+      <li><%= link_to "delete", reward_path(reward.id), method: :delete %></li>
     </ul>
 <% end %>
 <%= link_to "Add reward", new_reward_path %>

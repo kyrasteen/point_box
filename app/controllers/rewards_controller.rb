@@ -29,6 +29,11 @@ class RewardsController < ApplicationController
     end
   end
 
+  def destroy
+    @reward.destroy
+    redirect_to rewards_path
+  end
+
 end
 
 private
