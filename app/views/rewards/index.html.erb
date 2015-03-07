@@ -1,0 +1,10 @@
+<% @rewards.each do |reward| %>
+  <li><%= reward.name %></li>
+  <% if current_user.admin? %>
+    <ul>
+      <li><%= link_to "edit", edit_reward_path(reward.id) %></li>
+      <li><%= link_to "delete", reward_path(reward.id), method: :delete %></li>
+      <li><%= link_to "Add reward", new_reward_path %></li>
+    </ul>
+  <% end %>
+<% end %>
