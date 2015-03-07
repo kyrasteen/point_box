@@ -7,4 +7,7 @@ class PointsController < ApplicationController
     user.points.create(redeemed?:false)
     redirect_to user_path(user), alert: "point successfully given"
   end
+
+  def destroy
+  end
 end

@@ -24,4 +24,13 @@ RSpec.describe "As an admin", type: :feature do
     expect(page).to have_content("point successfully given")
     expect(page).to have_content(1)
   end
+
+  xit "can remove point(s) for a given user" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    visit user_path(sally)
+    click_link_or_button('+1 point for Sally')
+    click_link_or_button('-1 point for Sally')
+    expect(sally.points.count).to eq(0)
+    expect(page).not_to have_content(1)
+  end
 end
