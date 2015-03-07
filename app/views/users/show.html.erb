@@ -1,14 +1,18 @@
 <header><h1><%= @user.username %>'s Dashboard</h1></header>
 <%= link_to "Logout", logout_path, method: :delete %>
 
-<div id='points'>
-  <% @points.each do |point| %>
-    <p>1</p>
-  <% end %>
-</div>
+<% if @user.role == "default" %>
+  <div id='points'>
+    <% @points.each do |point| %>
+      <p>1</p>
+    <% end %>
+  </div>
 
-<div id="rewards">
-  <% @rewards.each do |reward| %>
-    <p><%= reward.name %></p>
-  <% end %>
-</div>
+  <div id="rewards">
+    <% @rewards.each do |reward| %>
+      <p><%= reward.name %></p>
+    <% end %>
+  </div>
+<% else %>
+  <%= link_to "All users", users_path %>
+<% end %>
