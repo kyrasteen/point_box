@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   it "has valid attributes" do
     expect(user.username).to eq('kyra')
     expect(user.password).to eq('s')
-    expect(user.role).to eq(0)
+    expect(user.role).to eq('defualt')
   end
 
   it "has many points" do
