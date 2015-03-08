@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @points = @user.points
+    @total_points = @user.points.where(redeemed?:false).count
     @rewards = @user.rewards
     authorize! :read, @user
   end
