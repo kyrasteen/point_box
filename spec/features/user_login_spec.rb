@@ -1,8 +1,4 @@
 require 'rails_helper'
-# As a user
-# When I login
-# I see my dashboard
-# with points and rewards
 
 RSpec.describe "When registered user", type: :feature do
 
@@ -22,5 +18,5 @@ RSpec.describe "When registered user", type: :feature do
     click_link_or_button("Logout")
     expect(page).to have_button('Sign in')
   end
-  
+
 end
