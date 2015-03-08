@@ -1,5 +1,8 @@
 class RewardsController < ApplicationController
-  before_action :set_reward, only: [:edit, :update, :destroy]
+  before_action :set_reward, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
 
   def index
     @rewards = Reward.all

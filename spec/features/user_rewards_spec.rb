@@ -36,13 +36,10 @@ RSpec.describe "As a user", type: :feature do
   context "with defualt role" do
     let(:lucy) { User.create(username:"lucy", password:"rigg", role:0) }
 
-    before do
-       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(lucy)
-       Reward.create(name:'cookie', cost:1)
-       visit rewards_path
-     end
-
     it "can only view index of rewards" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(lucy)
+      Reward.create(name:'cookie', cost:1)
+      visit rewards_path
       expect(page).to have_content("cookie")
       expect(page).not_to have_content("edit")
       expect(page).not_to have_content("delete")

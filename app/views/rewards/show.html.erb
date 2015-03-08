@@ -1,0 +1,4 @@
+<h1><%= @reward.name %></h1>
+<p><%= @reward.cost %></p>
+
+<%= link_to "Redeem", reward_user_rewards_path(@reward), method: :post %>
