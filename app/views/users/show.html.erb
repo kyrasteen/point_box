@@ -1,23 +1,25 @@
 <header><h1><%= @user.username %>'s Dashboard</h1></header>
 <%= link_to "Logout", logout_path, method: :delete %>
 
-<div id='points'>
-  <h2>Points:</h2>
-  <% @points.each do |point| %>
-    <p>1</p>
-    <% if point.redeemed? == true %>
-      <p>redeemed!</p>
+<% if current_user.default? %>
+  <div id='points'>
+    <h2>Points:</h2>
+    <% @points.each do |point| %>
+      <p>1</p>
+      <% if point.redeemed? %>
+        <p>redeemed!</p>
+      <% end %>
     <% end %>
-  <% end %>
-  <h3>Total available points: <%= @total_points %></h3>
-</div>
+    <h3>Total available points: <%= @total_points %></h3>
+  </div>
 
-<div id="rewards">
-  <h2>Rewards:</h2>
-  <% @rewards.each do |reward| %>
-    <p><%= reward.name %></p>
-  <% end %>
-</div>
+  <div id="rewards">
+    <h2>Rewards:</h2>
+    <% @rewards.each do |reward| %>
+      <p><%= reward.name %></p>
+    <% end %>
+  </div>
+<% end %>
 
 <%= link_to "All Rewards", rewards_path %>
 
