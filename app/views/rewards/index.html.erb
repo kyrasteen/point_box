@@ -7,7 +7,10 @@
     <ul>
       <li><%= link_to "edit", edit_reward_path(reward.id) %></li>
       <li><%= link_to "delete", reward_path(reward.id), method: :delete %></li>
-      <li><%= link_to "Add reward", new_reward_path %></li>
     </ul>
   <% end %>
 <% end %>
+      <% if current_user.admin? %>
+        <%= link_to "Add reward", new_reward_path %>
+        <%= link_to "Dashboard", current_user %>
+      <% end %>
